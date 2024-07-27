@@ -1,12 +1,11 @@
 .dialog {
-
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
     background: white;
 }
 
 .dialog__wrapper {
-    padding: 50px 10px 0px 20px;
+    padding: 50px 20px 0px 20px;
     clip-path: polygon(0 0, 100% 0, 100% 94%, 0 98%);
 }
 
@@ -62,4 +61,75 @@
         height: 600px;
     }
 
+}
+
+.dialog__messages {
+    max-width: 350px;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.dialog__item {
+    background: #fff;
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    border: 3px solid #008996;
+    border-radius: 10px;
+}
+
+.dialog__item_left {
+    border-color: #66B8C0;
+}
+
+.dialog__item:before,
+.dialog__item:after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.dialog__item:before {
+    left: 11px;
+    border-width: 25px 29px 0 0;
+    border-color: #008996 transparent transparent transparent;
+}
+
+.dialog__item_left:before {
+    left: auto;
+    right: 11px;
+    border-width: 25px 0px 0px 29px;
+    border-color: #66B8C0 transparent transparent transparent;
+}
+
+.dialog__item:after {
+    top: calc(100% - 1px);
+    left: 14px;
+    border-width: 20px 23px 0 0;
+    border-color: #fff transparent transparent transparent;
+}
+
+.dialog__item_left:after {
+    left: auto;
+    right: 14px;
+    border-width: 20px 0px 0 23px;
+}
+
+.dialog__messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.dialog__messages>*:nth-child(even) {
+    align-self: end;
+}
+
+.dialog__messages>*:nth-child(odd) {
+    align-self: start;
+    margin-top: 0px;
 }

@@ -14,7 +14,21 @@ function Screen2Test(props: IProps) {
                 <div className={style.dialog__wrapper}>
                     <div className={style.dialog__bg}></div>
                     <div className={style.dialog__content}>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat nemo accusantium tempore in facilis tenetur saepe dolorum distinctio itaque natus rerum excepturi, voluptatem sed voluptatum deserunt ea quia, beatae illo adipisci id numquam omnis. Voluptate nisi, alias, dolores adipisci dignissimos deleniti, nobis ea modi explicabo eum velit. Sequi cum at maiores quasi dignissimos fugiat dolorem id vel vero amet facere blanditiis magni unde, sint, ratione velit repellat officia placeat minima natus delectus cupiditate. Harum voluptate velit, ea tempora eos consectetur, facilis natus magnam debitis praesentium ab cupiditate quis dignissimos voluptatem odit tempore saepe nulla quos omnis quod. Dolore, vel laboriosam!</p>
+                        <div className={style.dialog__messages}>
+                            <div className={style.dialog__item}>
+                                <span className={style.dialog__text}>Хорошо, то,<br />о чём мы договаривались.</span>
+                            </div>
+                            <div className={style.dialog__item_left + " " + style.dialog__item}>
+                                <span className={style.dialog__text}>Хорошо, то,<br />о чём мы договаривались.</span>
+                            </div>
+                            <div className={style.dialog__item}>
+                                <span className={style.dialog__text}>Хорошо, то,<br />о чём мы договаривались.</span>
+                            </div>
+                            <div className={style.dialog__item_left + " " + style.dialog__item}>
+                                <span className={style.dialog__text}>Oker.</span>
+                            </div>
+                        </div>
+
                         <div className={style.dialog__persons}>
                             <img src={urlPersons} alt="persons" />
                         </div>
