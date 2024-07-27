@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Nipigaz Basic';
+    src: local('Nipigaz Basic') url('NipigazBasic-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nipigaz Basic';
+    src: local('Nipigaz Basic'),  url('NipigazBasic-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nipigaz Basic';
+    src: local('Nipigaz Basic'),  url('NipigazBasic-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}

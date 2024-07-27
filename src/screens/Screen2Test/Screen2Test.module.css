@@ -1,0 +1,65 @@
+.dialog {
+
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+    background: white;
+}
+
+.dialog__wrapper {
+    padding: 50px 10px 0px 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 94%, 0 98%);
+}
+
+.dialog__bg {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+    background: url('../../assets/images/test1/bg1.png');
+    background-size: contain;
+
+}
+
+.dialog__content {
+    position: relative;
+
+
+}
+
+.dialog p {
+    min-height: 393px;
+    background-color: grey;
+    opacity: .2;
+}
+
+.dialog__persons {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dialog__persons img {
+    height: 100%;
+
+}
+
+.answer {
+    background: green;
+    height: 492px;
+    margin-top: -35px;
+    background: url("../../assets/images/test1/bg2.png") no-repeat;
+    background-size: cover;
+}
+
+@media (min-width: 600px) {
+    .answer {
+        height: 600px;
+    }
+
+}
