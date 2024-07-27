@@ -67,6 +67,7 @@
     max-width: 350px;
     margin: auto;
     margin-bottom: 20px;
+    margin-top: 18px;
 }
 
 .dialog__item {
@@ -132,4 +133,42 @@
 .dialog__messages>*:nth-child(odd) {
     align-self: start;
     margin-top: 0px;
+}
+
+/* .dialog__progress {
+    position: fixed;
+    top: 50px;
+} */
+
+
+.test {
+    background: #fff;
+    padding: 24px 24px 50px;
+    border-radius: 24px 24px 0px 0px;
+    margin-top: -24px;
+}
+
+.test__answer::before {
+    content: "";
+    display: block;
+    border: 2px solid rgb(3, 172, 196);
+    width: 20%;
+    margin: auto;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+.test__answerText {
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+.test__answerText p:not(:last-child) {
+    margin-bottom: 14px;
+}
+
+.test__btn {
+    margin-top: 18px;
 }

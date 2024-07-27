@@ -1,0 +1,9 @@
+.progress {
+    border-radius: 7.03px;
+    backdrop-filter: blur(5.27px);
+    background: rgba(204, 231, 234, 0.5);
+    padding: 7px 15px;
+    display: inline-flex;
+    gap: 10px;
+    width: auto;
+}
