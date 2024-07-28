@@ -1,34 +1,44 @@
+import { useState } from "react";
+import { IDataTest } from "../../models/data-test";
 import style from "./Test.module.css"
-function Test() {
+
+interface IProps {
+    funCheckUserAnswer: (num: number) => void;
+    isUserAnswer: boolean;
+    data: IDataTest
+}
+function Test(props: IProps) {
+    const { funCheckUserAnswer, isUserAnswer, data } = props;
+    const [numChecked, setNumChecked] = useState(-1);
+    const [isFirstClick, setIsFirstClick] = useState(false);
+
+    const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!isFirstClick) setIsFirstClick(true)
+        setNumChecked(+e.target.value)
+    }
+    const clickBtn = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (numChecked === -1 || !isFirstClick) return
+        setIsFirstClick(false)
+        funCheckUserAnswer(numChecked)
+    }
+
     return (
         <div className={style.test}>
-            <h3 className={style.test__title}>Никита подходит к столу, тянется к ящику… Что будет дальше?</h3>
-            <form className={style.test__form}>
+            <h3 className={style.test__title} dangerouslySetInnerHTML={{ __html: data.question }}></h3>
+            <form onSubmit={clickBtn} className={style.test__form}>
                 <div className={style.test__answers}>
-                    <div className={style.test__item}>
-                        <input type="radio" checked id="item1" name="test" className={style.test__input} />
-                        <label htmlFor="item1" className={style.test__label + " " + style.success}>
-                            Он достанет толстую папку с отчётом по аналитике, который нужно успеть сдать в срок.
+                    {data.answers.map((item, index) => <div key={index} className={style.test__item}>
+                        <input disabled={isUserAnswer} onChange={changeInput} value={index} type="radio" id={`item${index}`} name="test" className={style.test__input + " " + ((!isUserAnswer && isFirstClick) ? style.test__inputChecked : "")} />
+                        <label htmlFor={`item${index}`} className={style.test__label + " " + (isUserAnswer && item.win ? style.success : (isUserAnswer && (index === numChecked)) ? style.error : "")} dangerouslySetInnerHTML={{ __html: item.text }}>
                         </label>
-                        <span className={style.test__desc}>О важном разговоре с коллегой Никита не забыл. Встречу перенесли на понедельник, чтоб было больше времени для обсуждения всех деталей проекта.</span>
-                    </div>
-                    <div className={style.test__item}>
-                        <input type="radio" id="item2" name="test" className={style.test__input} />
-                        <label htmlFor="item2" className={style.test__label}>
-                            Он достанет толстую папку с отчётом по аналитике, который нужно успеть сдать в срок.
-                        </label>
-                        <span className={style.test__desc}>О важном разговоре с коллегой Никита не забыл. Встречу перенесли на понедельник, чтоб было больше времени для обсуждения всех деталей проекта.</span>
-                    </div>
-                    <div className={style.test__item}>
-                        <input type="radio" id="item3" name="test" className={style.test__input} />
-                        <label htmlFor="item3" className={style.test__label}>
-                            Он достанет толстую папку с отчётом по аналитике, который нужно успеть сдать в срок.
-                        </label>
-                        <span className={style.test__desc}>О важном разговоре с коллегой Никита не забыл. Встречу перенесли на понедельник, чтоб было больше времени для обсуждения всех деталей проекта.</span>
-                    </div>
+                        {item.desc && isUserAnswer && (index !== numChecked) && <span className={style.test__desc} dangerouslySetInnerHTML={{ __html: item.desc }}></span>}
+                    </div>)}
+
+
                 </div>
 
-                <button className={`${style.test__btn} btn`}>Ответить</button>
+                {!isUserAnswer && <button className={`${style.test__btn} btn`}>Ответить</button>}
 
             </form>
 

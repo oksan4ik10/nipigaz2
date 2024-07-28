@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--bg-root);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .container {
@@ -22,7 +22,9 @@
   width: 100%;
   position: relative;
   --top: 0px;
-  overflow-x: hidden;
+  --left-container: 0px;
+  --top-container: 0px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 600px) {
@@ -51,7 +53,7 @@
 .btn {
   box-sizing: border-box;
   border-radius: 10px;
-
+  cursor: pointer;
   box-shadow: inset 8px 7px 5px 0px rgba(255, 255, 255, 0.25), inset -7px -5px 10px 0px rgba(0, 0, 0, 0.25);
   background: rgba(3, 172, 196, 0.85);
   color: #fff;

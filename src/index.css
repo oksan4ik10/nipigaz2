@@ -1,5 +1,8 @@
 @import url("./assets/fonts/fonts");
 
+body {
+  overflow: hidden;
+}
 
 :root {
   font-family: "Nipigaz Basic", system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,6 +17,8 @@
 
   --scrollbar-size: .2rem;
   --scrollbar-minlength: 1.5rem;
+
+
 }
 
 .scroll__elem {
