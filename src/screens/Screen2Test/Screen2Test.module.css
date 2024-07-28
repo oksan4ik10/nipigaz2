@@ -17,7 +17,8 @@
 }
 
 .dialog__wrapper {
-    padding: 120px 20px 0px 20px;
+    padding-top: 120px;
+    padding-bottom: 0;
     clip-path: polygon(0 0, 100% 0, 100% 94%, 0 98%);
 }
 
@@ -76,10 +77,11 @@
 }
 
 .dialog__messages {
-    max-width: 350px;
+    max-width: 390px;
     margin: auto;
     margin-bottom: 20px;
     margin-top: 18px;
+    padding: 0px 20px;
 }
 
 .dialog__item {
@@ -192,10 +194,10 @@
 }
 
 /* =========анимация  пазла==========*/
-.wrapper {
+/* .wrapper {
 
     --num-puzzle: 3;
-}
+} */
 
 .animation.wrapper {
     padding-right: .2rem
@@ -221,7 +223,6 @@
     display: block;
     animation: puzzle 5s backwards, opacityPuzzle .5s 5s backwards;
     z-index: 999;
-    opacity: 0;
 }
 
 @keyframes puzzle {
@@ -250,16 +251,6 @@
 
 }
 
-@keyframes opacityPuzzle {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-
-}
 
 .animation.puzzle img {
     animation: image 5s;

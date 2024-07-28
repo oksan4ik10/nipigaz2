@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 
@@ -24,6 +27,7 @@
   --top: 0px;
   --left-container: 0px;
   --top-container: 0px;
+  --num-puzzle: 0;
   overflow: hidden;
 }
 

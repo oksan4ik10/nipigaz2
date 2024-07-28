@@ -10,6 +10,7 @@ function App() {
     setIsScroll(val);
   }
 
+
   const refWrapper = useRef<HTMLDivElement>(null)
   useEffect(() => {
     if (refWrapper.current) {
@@ -20,11 +21,16 @@ function App() {
     }
 
   }, [])
+  const setNumAnswerMenu = (num: number) => {
+    if (refWrapper.current) {
+      refWrapper.current.style.setProperty('--num-puzzle', `${num}`);
+    }
+  }
 
   return (
     <>
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
-        {screen === 2 && <Screen2Test changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
+        {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
       </div>
 
     </>
