@@ -34,6 +34,51 @@
     align-items: center;
     justify-content: center;
     height: 450px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
+}
+
+.puzzle__item {
+    position: absolute;
+}
+
+.puzzle img {
+    width: 100%;
+}
+
+.puzzle0 {
+    width: 173.4px;
+}
+
+.puzzle1 {
+    width: 144.5px;
+}
+
+.puzzle2 {
+    width: 173.4px;
+}
+
+.puzzle3 {
+    width: 144.5px;
+}
+
+.puzzlePoz0 {
+    top: 0px;
+    left: -16px;
+}
+
+.puzzlePoz1 {
+    right: 10px;
+    top: 30px;
+}
+
+
+.puzzlePoz2 {
+    bottom: -20px;
+    left: 0px;
+}
+
+.puzzlePoz3 {
+    right: -10px;
+    bottom: 20px;
 }
