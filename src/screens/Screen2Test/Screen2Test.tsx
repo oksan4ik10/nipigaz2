@@ -45,12 +45,14 @@ function Screen2Test(props: IProps) {
     useEffect(() => {
         setDataTest(dataJSON[numTestQuestion]);
         setDataDialog(dataDialogJSON[numTestQuestion])
+        changeScroll(true)
     }, [])
 
     const nextAnswerMove = () => {
         const nextAnswer = numTestQuestion + 1;
         if (nextAnswer === 2) {
             changeScreen()
+            changeScroll(false)
             return;
         }
         setUserNumAnswer(-1);
@@ -90,7 +92,7 @@ function Screen2Test(props: IProps) {
                         {dataDialog && <div className={style.dialog__content}>
 
                             <div className={style.dialog__messages}>
-                                {dataDialog.dialog.map((item, index) => <div className={(index % 2 === 0 ? "" : style.dialog__item_left) + " " + style.dialog__item}>
+                                {dataDialog.dialog.map((item, index) => <div key={index} className={(index % 2 === 0 ? "" : style.dialog__item_left) + " " + style.dialog__item}>
                                     <span className={style.dialog__text} dangerouslySetInnerHTML={{ __html: item }}></span>
                                 </div>)}
                             </div>

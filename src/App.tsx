@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import Screen2Test from './screens/Screen2Test/Screen2Test'
+import Screen3 from './screens/Screen3/Screen3'
 import './App.css'
 
 function App() {
-  const [screen, setScreen] = useState(2)
+  const [screen, setScreen] = useState(3)
 
   const [isScroll, setIsScroll] = useState(false);
   const changeScroll = (val: boolean) => {
@@ -31,6 +32,7 @@ function App() {
     <>
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
         {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
+        {screen === 3 && <Screen3 changeScreen={console.log}></Screen3>}
       </div>
 
     </>
