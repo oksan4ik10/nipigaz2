@@ -13,11 +13,16 @@ function App() {
 
 
   const refWrapper = useRef<HTMLDivElement>(null)
+  const [dataContainerCoordinate, setDataContainerCoordinate] = useState({ top: 0, left: 0 })
   useEffect(() => {
     if (refWrapper.current) {
       const { left, top } = refWrapper.current.getBoundingClientRect();
       refWrapper.current.style.setProperty('--top-container', `${top}px`);
       refWrapper.current.style.setProperty('--left-container', `${left}px`);
+      setDataContainerCoordinate({
+        top,
+        left
+      })
 
     }
 
@@ -32,7 +37,7 @@ function App() {
     <>
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
         {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
-        {screen === 3 && <Screen3 changeScreen={console.log}></Screen3>}
+        {screen === 3 && <Screen3 dataContainerCoordinate={dataContainerCoordinate} changeScreen={console.log}></Screen3>}
       </div>
 
     </>
