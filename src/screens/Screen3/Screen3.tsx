@@ -23,7 +23,7 @@ function Screen3(props: IProps) {
     const refPuzzle = useRef<HTMLDivElement>(null);
     const [dataPuzzleCoordinate, setDataPuzzleCoordinate] = useState({ top: 0, left: 0, height: 0, width: 0 })
     const refContur = useRef<HTMLDivElement>(null);
-    const [dataConturCoordinate, setDataConturCoordinate] = useState({ top: 0, left: 0, height: 0, width: 0 })
+    const [answersCoordinate, setAnswersCoordinate] = useState<{ top: number, left: number }[]>([])
     useEffect(() => {
         const { current } = refPuzzle;
         const { current: currentContur } = refContur;
@@ -36,20 +36,30 @@ function Screen3(props: IProps) {
                 width: data.width
             })
             const dataContur = currentContur.getBoundingClientRect();
-            setDataConturCoordinate({
-                top: dataContur.top,
-                left: dataContur.left,
-                height: dataContur.height,
-                width: dataContur.width
-            })
+
+            const leftContur = dataContur.left - data.left;
+            const topContur = dataContur.top - data.top;
+
+            setAnswersCoordinate([
+                { top: topContur, left: leftContur },
+                { top: topContur, left: leftContur + 136 + 8 - 0.3 },
+                { top: topContur + 115, left: leftContur },
+                { top: topContur + 144 - 1, left: leftContur + 115 }
+            ])
+
+
         }
 
     }, [])
+    console.log(answersCoordinate);
 
     let targetDrag: HTMLElement | undefined;
+    const [id, setId] = useState(-1);
     const startTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
         const target = e.changedTouches[0].target as HTMLElement;
         disablePageScroll();
+        console.log(target);
+
         targetDrag = target.closest(`.${style.puzzle__item}`) as HTMLElement;
         if (targetDrag) {
             targetDrag.style.left = targetDrag.offsetLeft + "px"
@@ -57,11 +67,15 @@ function Screen3(props: IProps) {
             targetDrag.style.bottom = "auto"
             targetDrag.style.right = "auto"
             targetDrag.style.zIndex = "3"
+            const idTarget = targetDrag.getAttribute("data-id")
+            setId(idTarget ? +idTarget : -1)
         }
+
 
     }
 
     const moveTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
+
         if (!targetDrag) return
         const { clientX, clientY } = e.changedTouches[0];
         const widthTarget = targetDrag.offsetWidth;
@@ -81,6 +95,9 @@ function Screen3(props: IProps) {
 
 
     }
+    // const endTouch = ()=> {
+
+    // }
 
 
     return (
@@ -90,12 +107,12 @@ function Screen3(props: IProps) {
                 <div className={style.puzzle} ref={refPuzzle}>
                     <div className={style.puzzle__contur} ref={refContur}>
                         <img src={urlContur} alt="contur" />
-                        {dataImages.map((item, index) => <div className={`${style.puzzle__item} ${style[`puzzle${index}`]} ${dataPuzzleClass[index]}`}
+                        {dataImages.map((item, index) => <div key={index} data-id={index} className={`${style.puzzle__item} ${style[`puzzle${index}`]} ${dataPuzzleClass[index]}`}
                             onTouchStart={startTouch}
                             onTouchMove={moveTouch}
                         >
 
-                            <img src={item} alt={`puzzle${index}`} />
+                            <img src={item} alt={`puzzle${index}`} draggable="false" />
                         </div>)}
 
                     </div>
