@@ -1,7 +1,8 @@
-import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+import { disablePageScroll } from 'scroll-lock';
 
 import style from "./Screen3.module.css"
 import urlContur from "../../assets/images/border-puzzle.svg"
+import urlLogo from "../../assets/images/logo.png"
 import urlImg1 from "../../assets/images/puzzle/1-answer.png"
 import urlImg2 from "../../assets/images/puzzle/2-answer.png"
 import urlImg3 from "../../assets/images/puzzle/3-answer.png"
@@ -15,15 +16,21 @@ interface IProps {
 function Screen3(props: IProps) {
     const { dataContainerCoordinate } = props;
 
-    const dataPuzzleClass = [style.puzzlePoz0, style.puzzlePoz1, style.puzzlePoz2, style.puzzlePoz3].sort(function () { return 0.5 - Math.random() })
+
+    const [dataPuzzleClass, setDataPazzlClass] = useState<string[]>([])
+    useEffect(() => {
+        setDataPazzlClass([style.puzzlePoz0, style.puzzlePoz1, style.puzzlePoz2, style.puzzlePoz3].sort(function () { return 0.5 - Math.random() }))
+    }, [])
     const dataImages = [
-        urlImg1, urlImg2, urlImg3, urlImg4
+        { id: 0, urlImg: urlImg1 }, { id: 1, urlImg: urlImg2 }, { id: 2, urlImg: urlImg3 }, { id: 3, urlImg: urlImg4 }
     ]
 
     const refPuzzle = useRef<HTMLDivElement>(null);
     const [dataPuzzleCoordinate, setDataPuzzleCoordinate] = useState({ top: 0, left: 0, height: 0, width: 0 })
     const refContur = useRef<HTMLDivElement>(null);
     const [answersCoordinate, setAnswersCoordinate] = useState<{ top: number, left: number }[]>([])
+    console.log(answersCoordinate);
+
     useEffect(() => {
         const { current } = refPuzzle;
         const { current: currentContur } = refContur;
@@ -41,7 +48,7 @@ function Screen3(props: IProps) {
             const topContur = dataContur.top - data.top;
 
             setAnswersCoordinate([
-                { top: topContur, left: leftContur },
+                { top: topContur, left: leftContur + 1 },
                 { top: topContur, left: leftContur + 136 + 8 - 0.3 },
                 { top: topContur + 115, left: leftContur },
                 { top: topContur + 144 - 1, left: leftContur + 115 }
@@ -51,24 +58,27 @@ function Screen3(props: IProps) {
         }
 
     }, [])
-    console.log(answersCoordinate);
 
+    const [isWin, setIsWin] = useState(false);
     let targetDrag: HTMLElement | undefined;
-    const [id, setId] = useState(-1);
+    const [userAnswer, setUserAnswer] = useState(0);
+
     const startTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
         const target = e.changedTouches[0].target as HTMLElement;
         disablePageScroll();
-        console.log(target);
-
         targetDrag = target.closest(`.${style.puzzle__item}`) as HTMLElement;
         if (targetDrag) {
+            const idTarget = targetDrag.getAttribute("data-id");
+            if (idTarget === "-1") {
+                targetDrag = undefined;
+                return;
+            }
             targetDrag.style.left = targetDrag.offsetLeft + "px"
             targetDrag.style.top = targetDrag.offsetTop + "px"
             targetDrag.style.bottom = "auto"
             targetDrag.style.right = "auto"
             targetDrag.style.zIndex = "3"
-            const idTarget = targetDrag.getAttribute("data-id")
-            setId(idTarget ? +idTarget : -1)
+
         }
 
 
@@ -95,9 +105,31 @@ function Screen3(props: IProps) {
 
 
     }
-    // const endTouch = ()=> {
+    const endTouch = () => {
+        if (!targetDrag) return;
+        const idTarget = targetDrag.getAttribute("data-id");
+        const idAnswer = idTarget ? +idTarget : -1;
+        const xAnswer = parseFloat(targetDrag.style.left)
+        const yAnswer = parseFloat(targetDrag.style.top)
+        const answerCoordinate = answersCoordinate[idAnswer]
+        if ((answerCoordinate.top - 35 < yAnswer) && (answerCoordinate.top + 35 > yAnswer) && (answerCoordinate.left - 35 < xAnswer) && (answerCoordinate.left + 35 > xAnswer)) {
+            targetDrag.style.left = answerCoordinate.left + "px";
+            targetDrag.style.top = answerCoordinate.top + "px";
+            targetDrag.style.zIndex = "1";
+            targetDrag.setAttribute("data-id", "-1");
+            if (userAnswer === 3) {
+                setIsWin(true);
+                return
 
-    // }
+            }
+            setUserAnswer(userAnswer + 1);
+            return
+        }
+        targetDrag.style.zIndex = "2"
+
+
+
+    }
 
 
     return (
@@ -106,13 +138,17 @@ function Screen3(props: IProps) {
                 <h3 className={style.title + " " + style.text}>Собери пазл, перетаскивая<br />его части на игровое поле.<br />Тогда ты узнаешь, в чём секрет<br />дружного коллектива НИПИГАЗа!</h3>
                 <div className={style.puzzle} ref={refPuzzle}>
                     <div className={style.puzzle__contur} ref={refContur}>
-                        <img src={urlContur} alt="contur" />
-                        {dataImages.map((item, index) => <div key={index} data-id={index} className={`${style.puzzle__item} ${style[`puzzle${index}`]} ${dataPuzzleClass[index]}`}
+                        {!isWin && <img src={urlContur} alt="contur" />}
+                        {isWin && <div className={style.puzzle__logo}>
+                            <img src={urlLogo} alt="logo" />
+                        </div>}
+                        {dataImages.map((item, index) => <div key={item.id} data-id={index} className={`${style.puzzle__item} ${style[`puzzle${index}`]} ${dataPuzzleClass[index]}`}
                             onTouchStart={startTouch}
                             onTouchMove={moveTouch}
+                            onTouchEnd={endTouch}
                         >
 
-                            <img src={item} alt={`puzzle${index}`} draggable="false" />
+                            <img src={item.urlImg} alt={`puzzle${index}`} draggable="false" />
                         </div>)}
 
                     </div>
