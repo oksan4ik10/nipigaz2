@@ -46,7 +46,7 @@ function Screen3(props: IProps) {
             const dataContur = currentContur.getBoundingClientRect();
 
             const leftContur = dataContur.left - data.left;
-            const topContur = 50;
+            const topContur = 36;
 
             setAnswersCoordinate([
                 { top: topContur, left: leftContur },
