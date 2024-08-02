@@ -72,5 +72,6 @@
   align-items: center;
   justify-content: center;
   letter-spacing: 1px;
+  max-width: 400px;
 
 }

@@ -49,7 +49,7 @@ function Screen3(props: IProps) {
             const topContur = 50;
 
             setAnswersCoordinate([
-                { top: topContur, left: leftContur + 1 },
+                { top: topContur, left: leftContur },
                 { top: topContur, left: leftContur + 136 + 8 - 0.3 },
                 { top: topContur + 115, left: leftContur },
                 { top: topContur + 144 - 1, left: leftContur + 115 }
@@ -62,8 +62,18 @@ function Screen3(props: IProps) {
     let targetDrag: HTMLElement | undefined;
     const [userAnswer, setUserAnswer] = useState(0);
 
-    const startTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
+    const startClick = useRef(false)
+    const mouseStart = (e: React.MouseEvent<HTMLDivElement>) => {
+        const target = e.target as HTMLElement;
+        startClick.current = true;
+        start(target)
+    }
+    const startTouch = (e: React.TouchEvent<HTMLDivElement>) => {
         const target = e.changedTouches[0].target as HTMLElement;
+        start(target)
+
+    }
+    const start = (target: HTMLElement) => {
         targetDrag = target.closest(`.${style.puzzle__item}`) as HTMLElement;
         if (targetDrag) {
             const idTarget = targetDrag.getAttribute("data-id");
@@ -78,18 +88,24 @@ function Screen3(props: IProps) {
             targetDrag.style.zIndex = "3"
 
         }
-
-
     }
 
+    const mouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!startClick.current) return;
+        move(e.pageX, e.pageY);
+    }
     const moveTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
-
-        if (!targetDrag) return
         const { clientX, clientY } = e.changedTouches[0];
+        move(clientX, clientY)
+
+    }
+    const move = (xTarget: number, yTarget: number) => {
+        if (!targetDrag) return
+
         const widthTarget = targetDrag.offsetWidth;
         const heightTarget = targetDrag.offsetHeight;
-        let y = clientY - dataPuzzleCoordinate.top - heightTarget / 2;
-        let x = clientX - dataPuzzleCoordinate.left - (widthTarget / 2);
+        let y = yTarget - dataPuzzleCoordinate.top - heightTarget / 2;
+        let x = xTarget - dataPuzzleCoordinate.left - (widthTarget / 2);
         if (x < -16) x = -16;
         if (x + widthTarget / 2 > dataPuzzleCoordinate.width + 16 - widthTarget / 2) {
             x = dataPuzzleCoordinate.width + 16 - widthTarget;
@@ -100,10 +116,18 @@ function Screen3(props: IProps) {
         }
         targetDrag.style.top = y + "px";
         targetDrag.style.left = x + "px";
-
+    }
+    const mouseEnd = () => {
+        startClick.current = false;
+        end();
 
     }
-    const endTouch = () => {
+    const mouseOut = () => {
+        if (!startClick.current) return;
+        startClick.current = false;
+        end();
+    }
+    const end = () => {
         if (!targetDrag) return;
         const idTarget = targetDrag.getAttribute("data-id");
         const idAnswer = idTarget ? +idTarget : -1;
@@ -124,9 +148,10 @@ function Screen3(props: IProps) {
             return
         }
         targetDrag.style.zIndex = "2"
+    }
 
-
-
+    const endTouch = () => {
+        end()
     }
 
     const nextScreen = () => {
@@ -151,6 +176,10 @@ function Screen3(props: IProps) {
                             onTouchStart={startTouch}
                             onTouchMove={moveTouch}
                             onTouchEnd={endTouch}
+                            onMouseDown={mouseStart}
+                            onMouseMove={mouseMove}
+                            onMouseOut={mouseOut}
+                            onMouseUp={mouseEnd}
                         >
 
                             <img src={item.urlImg} alt={`puzzle${index}`} draggable="false" />
@@ -160,7 +189,7 @@ function Screen3(props: IProps) {
 
                 </div>
                 <div className={style.win + " " + (!isWin ? style.none : "")}>
-                    <h3 className={style.subtitle + " " + style.text}>Собери пазл, перетаскивая<br />его части на игровое поле.<br />Тогда ты узнаешь, в чём секрет<br />дружного коллектива НИПИГАЗа!</h3>
+                    <h3 className={style.subtitle + " " + style.text}><b>Секрет дружного коллектива</b> —<br />взаимопомощь, поддержка<br />доверительные отношения и время,<br />которое коллеги любят проводить вместе<br />как на работе, так и после неё.</h3>
                     <button className="btn" onClick={nextScreen}>В команду</button>
                 </div>
             </div>
