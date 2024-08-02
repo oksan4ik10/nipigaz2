@@ -189,7 +189,7 @@ function Screen3(props: IProps) {
 
                 </div>
                 <div className={style.win + " " + (!isWin ? style.none : "")}>
-                    <h3 className={style.subtitle + " " + style.text}><b>Секрет дружного коллектива</b> —<br />взаимопомощь, поддержка<br />доверительные отношения и время,<br />которое коллеги любят проводить вместе<br />как на работе, так и после неё.</h3>
+                    <h3 className={style.subtitle + " " + style.text}><b>Секрет дружного коллектива</b> —<br />взаимопомощь, поддержка<br />доверительные отношения и время,<br />которое коллеги любят проводить<br />вместе как на работе, так и после неё.</h3>
                     <button className="btn" onClick={nextScreen}>В команду</button>
                 </div>
             </div>
