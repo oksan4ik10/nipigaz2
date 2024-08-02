@@ -14,7 +14,7 @@ interface IProps {
 }
 
 function Screen3(props: IProps) {
-    const { dataContainerCoordinate } = props;
+    const { changeScreen } = props;
 
 
     const [dataPuzzleClass, setDataPazzlClass] = useState<string[]>([])
@@ -45,7 +45,7 @@ function Screen3(props: IProps) {
             const dataContur = currentContur.getBoundingClientRect();
 
             const leftContur = dataContur.left - data.left;
-            const topContur = dataContur.top - data.top;
+            const topContur = 50;
 
             setAnswersCoordinate([
                 { top: topContur, left: leftContur + 1 },
@@ -131,14 +131,21 @@ function Screen3(props: IProps) {
 
     }
 
+    const nextScreen = () => {
+        changeScreen();
+    }
+
 
     return (
         <div className={style.wrapper}>
             <div className={style.wrapper__content}>
                 <h3 className={style.title + " " + style.text}>Собери пазл, перетаскивая<br />его части на игровое поле.<br />Тогда ты узнаешь, в чём секрет<br />дружного коллектива НИПИГАЗа!</h3>
                 <div className={style.puzzle} ref={refPuzzle}>
-                    <div className={style.puzzle__contur} ref={refContur}>
-                        {!isWin && <img src={urlContur} alt="contur" />}
+                    <div className={style.puzzle__contur} >
+                        {!isWin && <div className={style.puzzle__conturImg} ref={refContur}>
+                            <img src={urlContur} alt="contur" />
+                        </div>}
+
                         {isWin && <div className={style.puzzle__logo}>
                             <img src={urlLogo} alt="logo" />
                         </div>}
@@ -153,6 +160,10 @@ function Screen3(props: IProps) {
 
                     </div>
 
+                </div>
+                <div className={style.win + " " + (!isWin ? style.none : "")}>
+                    <h3 className={style.subtitle + " " + style.text}>Собери пазл, перетаскивая<br />его части на игровое поле.<br />Тогда ты узнаешь, в чём секрет<br />дружного коллектива НИПИГАЗа!</h3>
+                    <button className="btn" onClick={nextScreen}>В команду</button>
                 </div>
             </div>
 

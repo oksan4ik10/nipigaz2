@@ -9,15 +9,14 @@
 }
 
 .wrapper__content {
-    padding: 60px 16px 22px;
     width: 100%;
+    padding-top: 30px;
 
 
 }
 
 .title {
-
-    margin-bottom: 37px;
+    margin-bottom: 5px;
 }
 
 .text {
@@ -30,11 +29,20 @@
 
 .puzzle {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     height: 450px;
     border: 1px solid red;
+    width: 100%;
+}
+
+.puzzle__conturImg {
+    width: 289px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.puzzle__conturImg img {
     width: 100%;
 }
 
@@ -44,9 +52,11 @@
     z-index: 2;
 }
 
-.puzzle img {
+.puzzle__item img {
     width: 100%;
 }
+
+
 
 .puzzle0 {
     width: 173.4px;
@@ -89,9 +99,9 @@
     width: 50px;
     height: 50px;
     position: absolute;
-    top: 50%;
+    top: 169.5px;
     left: 50%;
-    transform: translateX(calc(-50% - 2px)) translateY(calc(-50% - 6px));
+    transform: translateX(calc(-50%)) translateY(-1px);
     z-index: 5;
     animation: opacityLogo 1s ease-in;
 
@@ -110,4 +120,20 @@
     100% {
         opacity: 1;
     }
+}
+
+.win {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: -70px;
+    opacity: 1;
+    transition: .2s;
+}
+
+.win.none {
+    opacity: 0;
+}
+
+.subtitle {
+    margin-bottom: 20px;
 }
