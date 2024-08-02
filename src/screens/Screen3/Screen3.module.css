@@ -30,7 +30,6 @@
 .puzzle {
     position: relative;
     height: 450px;
-    border: 1px solid red;
     width: 100%;
 }
 
@@ -103,7 +102,7 @@
     left: 50%;
     transform: translateX(calc(-50%)) translateY(-1px);
     z-index: 5;
-    animation: opacityLogo 1s ease-in;
+    animation: opacityLogo .5s ease-in;
 
 }
 
@@ -127,7 +126,8 @@
     padding-right: 16px;
     margin-top: -70px;
     opacity: 1;
-    transition: .2s;
+    transition-delay: .4s;
+    transition-duration: 2s;
 }
 
 .win.none {

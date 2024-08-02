@@ -34,6 +34,7 @@ function Screen3(props: IProps) {
     useEffect(() => {
         const { current } = refPuzzle;
         const { current: currentContur } = refContur;
+        disablePageScroll()
         if (current && currentContur) {
             const data = current.getBoundingClientRect();
             setDataPuzzleCoordinate({
@@ -53,8 +54,6 @@ function Screen3(props: IProps) {
                 { top: topContur + 115, left: leftContur },
                 { top: topContur + 144 - 1, left: leftContur + 115 }
             ])
-
-
         }
 
     }, [])
@@ -65,7 +64,6 @@ function Screen3(props: IProps) {
 
     const startTouch = (e: React.TouchEvent<HTMLSpanElement>) => {
         const target = e.changedTouches[0].target as HTMLElement;
-        disablePageScroll();
         targetDrag = target.closest(`.${style.puzzle__item}`) as HTMLElement;
         if (targetDrag) {
             const idTarget = targetDrag.getAttribute("data-id");
