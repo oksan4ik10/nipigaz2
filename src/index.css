@@ -10,6 +10,7 @@ body {
   font-weight: 400;
   --primary-color: #03ACC4;
   --bg-root: #e2fbff;
+  --header-bg-color: #008C95;
 
   --scrollbar-track-color: #ECECEC;
   --scrollbar-color: #e2fbff;

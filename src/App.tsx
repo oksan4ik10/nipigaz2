@@ -35,7 +35,7 @@ function App() {
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
         {screen === 1 && <Screen1></Screen1>}
         {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
-        {screen === 3 && <Screen3 changeScreen={console.log}></Screen3>}
+        {screen === 3 && <Screen3 changeScreen={() => setScreen(4)}></Screen3>}
       </div>
 
     </>
