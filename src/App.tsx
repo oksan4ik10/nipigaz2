@@ -9,6 +9,8 @@ function App() {
 
   const [isScroll, setIsScroll] = useState(false);
   const changeScroll = (val: boolean) => {
+    console.log(val);
+
     setIsScroll(val);
   }
 
@@ -33,9 +35,10 @@ function App() {
   return (
     <>
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
-        {screen === 1 && <Screen1 numScreen={1}></Screen1>}
+        {screen === 1 && <Screen1 changeScreen={() => setScreen(2)} numScreen={0}></Screen1>}
         {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
         {screen === 3 && <Screen3 changeScreen={() => setScreen(4)}></Screen3>}
+        {screen === 4 && <Screen1 changeScreen={() => setScreen(0)} numScreen={1}></Screen1>}
       </div>
 
     </>

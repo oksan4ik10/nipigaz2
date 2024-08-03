@@ -45,7 +45,7 @@ function Screen2Test(props: IProps) {
     useEffect(() => {
         setDataTest(dataJSON[numTestQuestion]);
         setDataDialog(dataDialogJSON[numTestQuestion])
-        changeScroll(true)
+        changeScroll(false)
     }, [])
 
     const nextAnswerMove = () => {
