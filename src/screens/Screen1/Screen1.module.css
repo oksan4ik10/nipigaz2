@@ -97,6 +97,10 @@
     text-align: center;
 }
 
+.footer__content {
+    width: 100%;
+}
+
 .footer__text {
     margin-bottom: 20px;
 }
