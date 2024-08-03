@@ -43,9 +43,18 @@ function Screen1(props: IProps) {
                 </div>)}
 
             </main>
-            <footer className={style.footer}>
+            {numScreen === 0 && <footer className={style.footer + " " + style.footerFirst}>
                 <button className="btn">Берусь за дело</button>
-            </footer>
+            </footer>}
+            {numScreen === 1 && <footer className={style.footer + " " + style.footerSecond}>
+                <div className={style.footer__content}>
+                    <p className={style.footer__text}>
+                        А если ты готов стать частью <b>сплочённой</b><br /><b>команды,</b> которой нравится проводить<br />время вместе, приходи на программу<br />«Молодой специалист» от НИПИГАЗа!
+                    </p>
+                    <button className="btn">В команду</button>
+                </div>
+
+            </footer>}
 
         </div>
     );
