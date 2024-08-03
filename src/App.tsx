@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+import Screen1 from './screens/Screen1/Screen1'
 import Screen2Test from './screens/Screen2Test/Screen2Test'
 import Screen3 from './screens/Screen3/Screen3'
 import './App.css'
 
 function App() {
-  const [screen, setScreen] = useState(3)
+  const [screen, setScreen] = useState(1)
 
   const [isScroll, setIsScroll] = useState(false);
   const changeScroll = (val: boolean) => {
@@ -13,16 +14,12 @@ function App() {
 
 
   const refWrapper = useRef<HTMLDivElement>(null)
-  const [dataContainerCoordinate, setDataContainerCoordinate] = useState({ top: 0, left: 0 })
+
   useEffect(() => {
     if (refWrapper.current) {
       const { left, top } = refWrapper.current.getBoundingClientRect();
       refWrapper.current.style.setProperty('--top-container', `${top}px`);
       refWrapper.current.style.setProperty('--left-container', `${left}px`);
-      setDataContainerCoordinate({
-        top,
-        left
-      })
 
     }
 
@@ -36,8 +33,9 @@ function App() {
   return (
     <>
       <div className={"container" + " " + (isScroll ? "" : "scroll__elem")} ref={refWrapper}>
+        {screen === 1 && <Screen1></Screen1>}
         {screen === 2 && <Screen2Test setNumAnswerMenu={setNumAnswerMenu} changeScroll={changeScroll} changeScreen={() => setScreen(3)}></Screen2Test>}
-        {screen === 3 && <Screen3 dataContainerCoordinate={dataContainerCoordinate} changeScreen={console.log}></Screen3>}
+        {screen === 3 && <Screen3 changeScreen={console.log}></Screen3>}
       </div>
 
     </>

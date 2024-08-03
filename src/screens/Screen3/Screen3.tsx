@@ -10,7 +10,6 @@ import urlImg4 from "../../assets/images/puzzle/4-answer.png"
 import { useEffect, useRef, useState } from "react"
 interface IProps {
     changeScreen: () => void;
-    dataContainerCoordinate: { top: number, left: number }
 }
 
 function Screen3(props: IProps) {
