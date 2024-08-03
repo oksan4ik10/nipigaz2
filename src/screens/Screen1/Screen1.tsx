@@ -3,7 +3,14 @@ import urlMenu from "../../assets/images/screen1/menu.png"
 import urlArrow from "../../assets/images/screen1/arrow.svg"
 import urlAvatar from "../../assets/images/screen1/avatar.png"
 
-function Screen1() {
+import dataMessages from "../../data/messages.json"
+
+interface IProps {
+    numScreen: number;
+}
+function Screen1(props: IProps) {
+    const { numScreen } = props;
+    const messages = dataMessages[numScreen];
     return (
         <div className={style.container}>
             <header className={style.header}>
@@ -27,7 +34,15 @@ function Screen1() {
                     <img src={urlMenu} alt="menu" />
                 </div>
             </header>
-            <main className={style.main}></main>
+            <main className={style.main}>
+                {messages.map((item) => <div className={style.message}>
+                    <div className={style.message__text} dangerouslySetInnerHTML={{ __html: item.text }}>
+                    </div>
+                    <span className={style.message__time}>{item.time}</span>
+
+                </div>)}
+
+            </main>
             <footer className={style.footer}>
                 <button className="btn">Берусь за дело</button>
             </footer>
