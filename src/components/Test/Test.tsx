@@ -12,10 +12,14 @@ function Test(props: IProps) {
     const [numChecked, setNumChecked] = useState(-1);
     const [isFirstClick, setIsFirstClick] = useState(false);
 
-    const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const changeInput = (e: React.MouseEvent<HTMLInputElement>) => {
+        console.log(e.target);
+
         if (!isFirstClick) setIsFirstClick(true)
-        setNumChecked(+e.target.value)
+        const target = e.target as HTMLInputElement;
+        setNumChecked(+target.value)
     }
+
     const clickBtn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (numChecked === -1 || !isFirstClick) return
@@ -29,7 +33,7 @@ function Test(props: IProps) {
             <form onSubmit={clickBtn} className={style.test__form}>
                 <div className={style.test__answers}>
                     {data.answers.map((item, index) => <div key={index} className={style.test__item}>
-                        <input disabled={isUserAnswer} onChange={changeInput} value={index} type="radio" id={`item${index}`} name="test" className={style.test__input + " " + ((!isUserAnswer && isFirstClick) ? style.test__inputChecked : "")} />
+                        <input checked={index === numChecked} disabled={isUserAnswer} onClick={changeInput} value={index} type="radio" id={`item${index}`} name="test" className={style.test__input + " " + ((!isUserAnswer && isFirstClick) ? style.test__inputChecked : "")} />
                         <label htmlFor={`item${index}`} className={style.test__label + " " + (isUserAnswer && item.win ? style.success : (isUserAnswer && (index === numChecked)) ? style.error : "")} dangerouslySetInnerHTML={{ __html: item.text }}>
                         </label>
                         {item.desc && isUserAnswer && (index !== numChecked) && <span className={style.test__desc} dangerouslySetInnerHTML={{ __html: item.desc }}></span>}

@@ -231,7 +231,7 @@
 }
 
 .animation.puzzle.puzzle3 {
-    left: calc(var(--left-container) + 20px + 14px + 36px + 4px + 30.76px + 4px + 30.76px + 4px);
+    left: calc(var(--left-container) + 20px + 14px + 36px + 4px + 30.76px + 4px + 30.76px + 8px);
     animation: puzzle3 3s backwards, opacityPuzzle .5s 3s backwards;
 }
 
@@ -313,7 +313,7 @@
 
     100% {
         top: calc(var(--top-container) + 57px);
-        left: calc(var(--left-container) + 20px + 14px + 36px + 4px + 30.76px + 4px + 30.76px + 4px);
+        left: calc(var(--left-container) + 20px + 14px + 36px + 4px + 30.76px + 4px + 30.76px + 8px);
         transform: scale(1);
     }
 
