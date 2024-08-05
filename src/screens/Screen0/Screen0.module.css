@@ -75,7 +75,7 @@
 
 .footer {
     flex: 0 0 auto;
-    padding-bottom: calc(var(--vh, 1vh) * 3.7);
+    padding-bottom: calc(100vh - (var(--vh, 1vh) * 100) + 3.7vh);
     padding-left: 14px;
     padding-right: 14px;
     width: 100%;

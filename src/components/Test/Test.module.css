@@ -69,5 +69,5 @@
 }
 
 .test__inputChecked:checked~.test__label {
-    opacity: .7;
+    opacity: .5;
 }

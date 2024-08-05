@@ -6,7 +6,7 @@ import Screen3 from './screens/Screen3/Screen3'
 import './App.css'
 
 function App() {
-  const [screen, setScreen] = useState(0)
+  const [screen, setScreen] = useState(3)
 
   const [isScroll, setIsScroll] = useState(false);
   const changeScroll = (val: boolean) => {

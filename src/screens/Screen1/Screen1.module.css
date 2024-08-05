@@ -79,22 +79,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: calc(var(--vh, 1vh) * 3.7);
+    padding-bottom: calc(100vh - (var(--vh, 1vh) * 100) + 3.7vh);
 
     padding-left: 14px;
     padding-right: 14px;
 }
 
 .footerSecond {
+    flex: 0 0 auto;
     border-radius: 24px 24px 0px 0px;
     background: rgb(255, 255, 255);
-    padding-top: 20px;
+    padding-top: 25px;
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: -1px;
     text-align: center;
+    padding-bottom: calc(100vh - (var(--vh, 1vh) * 100) + 3.3vh);
 }
 
 .footer__content {

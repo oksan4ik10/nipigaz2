@@ -87,3 +87,13 @@
   width: calc(100% - 32px);
   cursor: none;
 }
+
+body::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url("./assets/images/screen1/BG.png"), url("./assets/images/puzzle/1-answer.png"), url("./assets/images/puzzle/3-answer.png"), url("./assets/images/puzzle/4-answer.png"), url("./assets/images/puzzle/2-answer.png"), url("./assets/images/screen0/bg.png"),
+    url("./assets/images/test1/bg1.png"), url("./assets/images/test1/bg2-answer.png"), url("./assets/images/test1/bg2.png"), url("./assets/images/test1/people.png")
+}
