@@ -12,7 +12,10 @@ import dataDialogJSON from "../../data/testDialogData.json"
 
 // import urlPersons1 from "../../assets/images/test1/people.png"
 // import urlPersons2 from "../../assets/images/test1/2people.png"
-import urlPuzzle1 from "../../assets/images/progress/1-answer.png"
+import urlPuzzle1 from "../../assets/images/puzzle/1-answer.png"
+import urlPuzzle2 from "../../assets/images/puzzle/2-answer.png"
+import urlPuzzle3 from "../../assets/images/puzzle/3-answer.png"
+import urlPuzzle4 from "../../assets/images/puzzle/4-answer.png"
 import { IDataDialog } from "../../models/data-dialog";
 
 interface IProps {
@@ -38,10 +41,12 @@ function Screen2Test(props: IProps) {
 
         setTimeout(() => {
             if (btnRef.current) btnRef.current.scrollIntoView({ block: "center", behavior: "smooth" });
-        })
+        }, 200)
 
 
     }
+
+    const imagesPuzzle = [urlPuzzle1, urlPuzzle2, urlPuzzle3, urlPuzzle4]
     useEffect(() => {
         setDataTest(dataJSON[numTestQuestion]);
         setDataDialog(dataDialogJSON[numTestQuestion])
@@ -50,7 +55,7 @@ function Screen2Test(props: IProps) {
 
     const nextAnswerMove = () => {
         const nextAnswer = numTestQuestion + 1;
-        if (nextAnswer === 2) {
+        if (nextAnswer === 4) {
             changeScreen()
             changeScroll(false)
             return;
@@ -83,8 +88,8 @@ function Screen2Test(props: IProps) {
                 <div className={style.progress + " " + (isAnimationPuzzle ? style.animation : "")}>
                     <ProgressBar numTestQuestion={numTestQuestion}></ProgressBar>
                 </div>
-                <div className={style.puzzle + " " + (isAnimationPuzzle ? style.animation : "")}>
-                    <img src={urlPuzzle1} alt="puzzle" />
+                <div className={style.puzzle + " " + (numTestQuestion === 1 ? style.puzzle1 : numTestQuestion === 2 ? style.puzzle2 : numTestQuestion === 3 ? style.puzzle3 : "") + " " + (isAnimationPuzzle ? style.animation : "")}>
+                    <img src={imagesPuzzle[numTestQuestion]} alt="puzzle" />
                 </div>
                 <div className={style.dialog} ref={dialogRef}>
                     <div className={style.dialog__wrapper}>

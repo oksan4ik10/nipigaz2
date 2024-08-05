@@ -2,8 +2,8 @@
     border-radius: 7.03px;
     backdrop-filter: blur(5.27px);
     background: rgba(204, 231, 234, 0.5);
-    padding: 7px 15px;
+    padding: 7px 14px 0px;
     display: inline-flex;
-    gap: 10px;
+    gap: 4px;
     width: auto;
 }

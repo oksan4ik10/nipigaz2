@@ -50,7 +50,7 @@ function Screen3(props: IProps) {
             setAnswersCoordinate([
                 { top: topContur, left: leftContur },
                 { top: topContur, left: leftContur + 136 + 8 - 0.3 },
-                { top: topContur + 115, left: leftContur },
+                { top: topContur + 113, left: leftContur },
                 { top: topContur + 144 - 1, left: leftContur + 115 }
             ])
         }
