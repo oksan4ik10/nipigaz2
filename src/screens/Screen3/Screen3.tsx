@@ -133,7 +133,7 @@ function Screen3(props: IProps) {
         const xAnswer = parseFloat(targetDrag.style.left)
         const yAnswer = parseFloat(targetDrag.style.top)
         const answerCoordinate = answersCoordinate[idAnswer]
-        if ((answerCoordinate.top - 35 < yAnswer) && (answerCoordinate.top + 35 > yAnswer) && (answerCoordinate.left - 35 < xAnswer) && (answerCoordinate.left + 35 > xAnswer)) {
+        if ((answerCoordinate.top - 50 < yAnswer) && (answerCoordinate.top + 50 > yAnswer) && (answerCoordinate.left - 50 < xAnswer) && (answerCoordinate.left + 50 > xAnswer)) {
             targetDrag.style.left = answerCoordinate.left + "px";
             targetDrag.style.top = answerCoordinate.top + "px";
             targetDrag.style.zIndex = "1";

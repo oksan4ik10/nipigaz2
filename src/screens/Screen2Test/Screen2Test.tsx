@@ -70,7 +70,7 @@ function Screen2Test(props: IProps) {
     const clickBtn = () => {
         setIsAnimationPuzzle(true);
         changeScroll(true)
-        setTimeout(() => nextAnswerMove(), 5500)
+        setTimeout(() => nextAnswerMove(), 3000)
 
     }
 

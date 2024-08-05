@@ -221,7 +221,7 @@
     width: 37px;
     height: 37px;
     display: block;
-    animation: puzzle 5s backwards, opacityPuzzle .5s 5s backwards;
+    animation: puzzle 3s backwards, opacityPuzzle .5s 3s backwards;
     z-index: 999;
 }
 
@@ -253,7 +253,7 @@
 
 
 .animation.puzzle img {
-    animation: image 5s;
+    animation: image 3s;
     transform: rotate(1800deg);
 }
 
